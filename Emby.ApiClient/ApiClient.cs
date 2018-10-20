@@ -429,6 +429,25 @@ namespace Emby.ApiClient
         }
 
         /// <summary>
+        /// Delete the item async.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <returns>Task{ItemCounts}.</returns>
+        /// <exception cref="System.ArgumentNullException">query</exception>
+        public Task DeleteItemAsync(string itemId, CancellationToken cancellationToken = default(CancellationToken))
+        {
+
+            var url = GetApiUrl("Items/" + itemId);
+
+            return SendAsync(new HttpRequest
+            {
+                Url = url,
+                RequestHeaders = HttpHeaders,
+                Method = "DELETE"
+            });
+        }
+
+        /// <summary>
         /// Gets a BaseItem
         /// </summary>
         /// <param name="userId">The user id.</param>
